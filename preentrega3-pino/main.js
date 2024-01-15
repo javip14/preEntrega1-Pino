@@ -200,58 +200,50 @@ const instancia1 = new NombreClase(valor1, ..., valorn);
 
 /////////////////////////////////////////////////////////////////////////////
 const productos = [
-  { id: 1, nombre: "camisa", precio: 1000 },
-  { id: 2, nombre: "media", precio: 750 },
-  { id: 3, nombre: "gorra", precio: 370 },
-  { id: 4, nombre: "zapato", precio: 852 },
+  { id: 1, nombre: "Harry", precio: 1000, imagen: "img/harry.png" },
+  { id: 2, nombre: "Mario-World", precio: 750, imagen: "img/mario-world.png" },
+  { id: 3, nombre: "Scooby-Doo", precio: 370, imagen: "img/scooby-doo.png" },
+  { id: 4, nombre: "Simpsons", precio: 852, imagen: "img/simpsons.png" },
 ];
 
-const carrito = []; //carrito para agregar los productos
+const carrito = [];
 let boton = document.getElementById("ver-productos");
 
-//funcion para agregar al carrito
 const agregar = (id) => {
-  //buscamos el producto por su id
   const producto = productos.find((item) => item.id === id);
-  // alert(`
-  //   Id: ${producto.id}
-  //   Nombre: ${producto.nombre}
-  //   Precio: ${producto.precio}
-  // `);
-  carrito.push(producto); //agregamos el producto al carrito
+  carrito.push(producto);
   console.log(carrito);
 };
 
 productos.forEach((item) => {
   let div = document.createElement("div");
-  //agregamos la información y el boton agregar
   div.innerHTML = `
     <h2>Id: ${item.id}</h2>
     <p>Nombre: ${item.nombre}</p>
+    <img src="${item.imagen}" alt="${item.nombre}">
     <b>$${item.precio}</b>
     <button id="boton${item.id}">Agregar</button>
   `;
   document.body.append(div);
 
-  //obtenemos el boton en cuestion
   let boton = document.getElementById(`boton${item.id}`);
-
-  //agregamos el addEventListener para cuando le demos click
   boton.addEventListener("click", () => agregar(item.id));
 });
 
 boton.addEventListener("click", () => {
   carrito.forEach((item) => {
     let div = document.createElement("div");
-    //agregamos la información y el boton agregar
     div.innerHTML = `
-    <h2>Id: ${item.id}</h2>
-    <p>Nombre: ${item.nombre}</p>
-    <b>$${item.precio}</b>
-  `;
+      <h2>Id: ${item.id}</h2>
+      <p>Nombre: ${item.nombre}</p>
+      <img src="${item.imagen}" alt="${item.nombre}">
+      <b>$${item.precio}</b>
+    `;
     document.body.append(div);
   });
 });
+
+
 
 ////////////////////////////////////////////////////////////////////////
 // const productos = [];
