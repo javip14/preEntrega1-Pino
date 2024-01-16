@@ -200,10 +200,10 @@ const instancia1 = new NombreClase(valor1, ..., valorn);
 
 /////////////////////////////////////////////////////////////////////////////
 const productos = [
-  { id: 1, nombre: "Harry", precio: 1000, imagen: "img/harry.png" },
+  { id: 1, nombre: "Harry", precio: 500, imagen: "img/harry.png" },
   { id: 2, nombre: "Mario-World", precio: 750, imagen: "img/mario-world.png" },
-  { id: 3, nombre: "Scooby-Doo", precio: 370, imagen: "img/scooby-doo.png" },
-  { id: 4, nombre: "Simpsons", precio: 852, imagen: "img/simpsons.png" },
+  { id: 3, nombre: "Scooby-Doo", precio: 1000, imagen: "img/scooby-doo.png" },
+  { id: 4, nombre: "Simpsons", precio: 1000, imagen: "img/simpsons.png" },
 ];
 
 const carrito = [];
@@ -230,18 +230,34 @@ productos.forEach((item) => {
   boton.addEventListener("click", () => agregar(item.id));
 });
 
+
 boton.addEventListener("click", () => {
+  let productosAgregados = "Productos agregados al carrito:\n";
+  let totalPrecio = 0;
+
   carrito.forEach((item) => {
-    let div = document.createElement("div");
-    div.innerHTML = `
-      <h2>Id: ${item.id}</h2>
-      <p>Nombre: ${item.nombre}</p>
-      <img src="${item.imagen}" alt="${item.nombre}">
-      <b>$${item.precio}</b>
-    `;
-    document.body.append(div);
+    productosAgregados += `Id: ${item.id}, Nombre: ${item.nombre}, Precio: $${item.precio}\n`;
+    totalPrecio += item.precio;
   });
+
+  productosAgregados += `\nTotal productos: $${totalPrecio}`;
+
+  alert(productosAgregados);
 });
+
+
+// boton.addEventListener("click", () => {
+//   carrito.forEach((item) => {
+//     let div = document.createElement("div");
+//     div.innerHTML = `
+//       <h2>Id: ${item.id}</h2>
+//       <p>Nombre: ${item.nombre}</p>
+//       <img src="${item.imagen}" alt="${item.nombre}">
+//       <b>$${item.precio}</b>
+//     `;
+//     document.body.append(div);
+//   });
+
 
 
 
